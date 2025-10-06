@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-pink-light: #F5D2D2;
+    --color-yellow-light: #F8F7BA;
+    --color-green-light: #BDE3C3;
+    --color-blue-light: #A3CCDA;
+  }
+}
