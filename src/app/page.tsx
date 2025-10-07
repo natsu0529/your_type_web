@@ -7,10 +7,10 @@ import ActionButtons from '@/components/ActionButtons';
 import ProgressBar from '@/components/ProgressBar';
 import ResultPage from '@/components/ResultPage';
 
-// 仮の質問データ（50問）
-const SAMPLE_QUESTIONS = Array.from({ length: 50 }, (_, i) => ({
+// 仮の質問データ（5問でテスト）
+const SAMPLE_QUESTIONS = Array.from({ length: 5 }, (_, i) => ({
   id: i + 1,
-  text: `これは質問 ${i + 1} です。あなたはこの状況に当てはまりますか？`,
+  text: `質問${i + 1}`,
 }));
 
 type AppState = 'username' | 'questions' | 'result';
@@ -32,15 +32,8 @@ export default function Home() {
     setAnswers(newAnswers);
 
     if (currentQuestionIndex + 1 >= SAMPLE_QUESTIONS.length) {
-      // 全質問完了 - 仮の結果タイプを設定
-      const types = [
-        'INTJ', 'INTP', 'ENTJ', 'ENTP',
-        'INFJ', 'INFP', 'ENFJ', 'ENFP',
-        'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ',
-        'ISTP', 'ISFP', 'ESTP', 'ESFP',
-      ];
-      const randomType = types[Math.floor(Math.random() * types.length)];
-      setResultType(randomType);
+      // 全質問完了 - 固定の結果タイプを設定
+      setResultType('サンプルタイプ');
       setState('result');
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);

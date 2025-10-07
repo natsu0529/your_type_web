@@ -35,29 +35,10 @@ export default function ResultPage({ username, type, onRestart }: ResultPageProp
           </div>
 
           <div className="bg-gradient-to-r from-[var(--color-yellow-light)] to-[var(--color-pink-light)] rounded-2xl p-6 mb-8">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">タイプの特徴</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-4">タイプの説明</h3>
             <p className="text-gray-700 leading-relaxed">
-              このタイプの詳細な説明がここに入ります。あなたの性格や傾向、強みや弱みなどを詳しく解説します。バックエンドAPIから取得したデータがここに表示されます。
+              ここにタイプの詳細な説明が表示されます。バックエンドAPIから取得したデータに置き換える予定です。
             </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-[var(--color-blue-light)] bg-opacity-20 rounded-xl p-4">
-              <h4 className="font-bold text-gray-800 mb-2">強み</h4>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>• 特徴1</li>
-                <li>• 特徴2</li>
-                <li>• 特徴3</li>
-              </ul>
-            </div>
-            <div className="bg-[var(--color-green-light)] bg-opacity-20 rounded-xl p-4">
-              <h4 className="font-bold text-gray-800 mb-2">改善点</h4>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>• 特徴1</li>
-                <li>• 特徴2</li>
-                <li>• 特徴3</li>
-              </ul>
-            </div>
           </div>
 
           <div className="flex gap-4">

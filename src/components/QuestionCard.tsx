@@ -77,7 +77,7 @@ export default function QuestionCard({
 
   return (
     <div
-      className="absolute w-full max-w-md touch-none select-none cursor-grab active:cursor-grabbing"
+      className="absolute w-full h-[600px] sm:h-[650px] max-w-sm mx-auto touch-none select-none cursor-grab active:cursor-grabbing"
       style={{
         transform: `translateX(${position.x}px) translateY(${position.y + offset * 10}px) rotate(${rotation}deg) scale(${1 - offset * 0.05})`,
         zIndex,
@@ -91,33 +91,16 @@ export default function QuestionCard({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="bg-white rounded-3xl shadow-2xl p-8 border-4 border-[var(--color-pink-light)]">
+      <div className="bg-white/100 rounded-[50px] shadow-2xl p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: '#ffffff' }}>
         <div className="text-center mb-6">
           <span className="text-sm font-medium text-gray-500">
             Question {questionNumber} / {totalQuestions}
           </span>
         </div>
 
-        <div className="text-center mb-8">
-          <p className="text-2xl font-bold text-gray-800">{question}</p>
+        <div className="text-center flex-1 flex items-center justify-center">
+          <p className="text-3xl sm:text-4xl font-bold text-gray-800">{question}</p>
         </div>
-
-        {isDragging && (
-          <div className="flex justify-between items-center">
-            <div
-              className="transition-opacity"
-              style={{ opacity: position.x < 0 ? Math.abs(position.x) / 100 : 0 }}
-            >
-              <span className="text-4xl font-bold text-[var(--color-pink-light)]">NO</span>
-            </div>
-            <div
-              className="transition-opacity"
-              style={{ opacity: position.x > 0 ? position.x / 100 : 0 }}
-            >
-              <span className="text-4xl font-bold text-[var(--color-green-light)]">YES</span>
-            </div>
-          </div>
-        )}
       </div>
 
       {isDragging && (
