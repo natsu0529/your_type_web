@@ -22,6 +22,7 @@ export default function QuestionCard({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -73,6 +74,19 @@ export default function QuestionCard({
     }
   };
 
+  const handleButtonClick = (answer: boolean) => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+    const targetX = answer ? 300 : -300;
+    setPosition({ x: targetX, y: 0 });
+
+    setTimeout(() => {
+      onSwipe(answer);
+      setIsAnimating(false);
+    }, 300);
+  };
+
   const rotation = position.x * 0.1;
 
   return (
@@ -102,6 +116,28 @@ export default function QuestionCard({
         <div className="text-center flex-1 flex items-center justify-center px-4">
           <p className="responsive-text-3xl font-bold text-gray-800">{question}</p>
         </div>
+
+        {/* ボタン */}
+        <div className="flex gap-12 justify-center mt-4">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleButtonClick(false);
+            }}
+            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-white hover:bg-[var(--color-pink-light)] hover:text-white transition-colors duration-200"
+          >
+            NO
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleButtonClick(true);
+            }}
+            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-white hover:bg-[var(--color-green-light)] hover:text-white transition-colors duration-200"
+          >
+            YES
+          </button>
+        </div>
       </div>
 
       {/* NOラベル - 右下に配置 */}
@@ -110,7 +146,7 @@ export default function QuestionCard({
         style={{
           bottom: '1rem',
           right: '1rem',
-          opacity: isDragging && position.x < 0 ? Math.min(Math.abs(position.x) / 100, 1) : 0
+          opacity: (isDragging || isAnimating) && position.x < 0 ? Math.min(Math.abs(position.x) / 100, 1) : 0
         }}
       >
         NO
@@ -121,7 +157,7 @@ export default function QuestionCard({
         style={{
           bottom: '1rem',
           left: '1rem',
-          opacity: isDragging && position.x > 0 ? Math.min(position.x / 100, 1) : 0
+          opacity: (isDragging || isAnimating) && position.x > 0 ? Math.min(position.x / 100, 1) : 0
         }}
       >
         YES
