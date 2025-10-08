@@ -104,22 +104,28 @@ export default function QuestionCard({
         </div>
       </div>
 
-      {isDragging && (
-        <>
-          <div
-            className="absolute top-4 left-4 responsive-text-4xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] px-3 py-1 rotate-[-20deg]"
-            style={{ opacity: position.x < 0 ? Math.abs(position.x) / 100 : 0 }}
-          >
-            NO
-          </div>
-          <div
-            className="absolute top-4 right-4 responsive-text-4xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] px-3 py-1 rotate-[20deg]"
-            style={{ opacity: position.x > 0 ? position.x / 100 : 0 }}
-          >
-            YES
-          </div>
-        </>
-      )}
+      {/* NOラベル - 右下に配置 */}
+      <div
+        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-white/90 px-4 py-2 rotate-[-20deg] rounded-xl shadow-xl z-50"
+        style={{
+          bottom: '1rem',
+          right: '1rem',
+          opacity: isDragging && position.x < 0 ? Math.min(Math.abs(position.x) / 100, 1) : 0
+        }}
+      >
+        NO
+      </div>
+      {/* YESラベル - 左下に配置 */}
+      <div
+        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-white/90 px-4 py-2 rotate-[20deg] rounded-xl shadow-xl z-50"
+        style={{
+          bottom: '1rem',
+          left: '1rem',
+          opacity: isDragging && position.x > 0 ? Math.min(position.x / 100, 1) : 0
+        }}
+      >
+        YES
+      </div>
     </div>
   );
 }
