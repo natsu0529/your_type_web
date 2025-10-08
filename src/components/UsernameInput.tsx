@@ -17,31 +17,31 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[var(--color-pink-light)] via-[var(--color-yellow-light)] to-[var(--color-blue-light)] p-4">
-      <div className="w-full max-w-lg">
+    <div className="flex items-center justify-center h-screen w-screen overflow-hidden p-2 sm:p-4">
+      <div className="w-full h-full flex items-center justify-center">
         {/* メインカード */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-[2.5rem] shadow-2xl p-8 sm:p-12 border-4 border-white">
+        <div className="bg-white/95 backdrop-blur-sm rounded-[2.5rem] shadow-2xl responsive-p-8 border-4 border-white w-full max-h-full flex flex-col justify-between overflow-hidden">
           {/* ヘッダーセクション */}
-          <div className="text-center mb-8">
-            <h1 className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-pink-light)] mb-4 tracking-tight">
+          <div className="text-center mb-4">
+            <h1 className="responsive-text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-pink-light)] mb-2 tracking-tight">
               Your Type
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 font-medium mb-2">
+            <p className="responsive-text-lg text-gray-600 font-medium mb-2">
               あなたは、どのタイプ？
             </p>
 
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-yellow-light)] to-[var(--color-pink-light)] px-6 py-2 rounded-full">
-              <span className="text-sm font-bold text-gray-800">5つの質問</span>
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-yellow-light)] to-[var(--color-pink-light)] px-4 py-1.5 rounded-full">
+              <span className="responsive-text-xs font-bold text-gray-800">5つの質問</span>
               <span className="text-gray-600">•</span>
-              <span className="text-sm font-bold text-gray-800">1つのタイプ</span>
+              <span className="responsive-text-xs font-bold text-gray-800">1つのタイプ</span>
             </div>
           </div>
 
           {/* フォームセクション */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col items-center">
-              <label htmlFor="username" className="block text-base font-bold text-gray-800 mb-3 text-center">
+              <label htmlFor="username" className="block responsive-text-sm font-bold text-gray-800 mb-2 text-center">
                 まずは、あなたの名前を教えてください
               </label>
               <input
@@ -49,7 +49,7 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-2/3 md:w-80 px-6 py-2.5 border-3 border-gray-200 rounded-[20px] focus:border-[var(--color-blue-light)] focus:ring-4 focus:ring-[var(--color-blue-light)]/20 focus:outline-none transition-all text-lg font-medium text-center shadow-sm"
+                className="w-2/3 md:w-80 px-4 py-2 border-3 border-gray-200 rounded-[20px] focus:border-[var(--color-blue-light)] focus:ring-4 focus:ring-[var(--color-blue-light)]/20 focus:outline-none transition-all responsive-text-base font-medium text-center shadow-sm"
                 placeholder="山田 太郎"
                 required
               />
@@ -58,7 +58,7 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-2/3 md:w-80 bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-blue-light)] bg-[length:200%_100%] text-white font-black text-lg py-3 rounded-[20px] shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:bg-right"
+                className="w-2/3 md:w-80 bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-blue-light)] bg-[length:200%_100%] text-white font-black responsive-text-base py-2.5 rounded-[20px] shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:bg-right"
               >
                 診断をスタート ✨
               </button>
@@ -66,16 +66,17 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
           </form>
 
           {/* フッターセクション */}
-          <div className="mt-8 text-center">
-            <img src="/your_type_img.svg" alt="Your Type" className="h-12 w-12 mx-auto" />
+          <div className="flex justify-center items-center flex-shrink-0">
+            <img src="/your_type_img.svg" alt="Your Type" className="responsive-size-logo max-w-full object-contain" />
           </div>
-        </div>
 
-        {/* 装飾的な要素 */}
-        <div className="mt-6 text-center">
-          <p className="text-sm text-white/80 font-medium">
-            スワイプで簡単に答えられます 👆
-          </p>
+          {/* 装飾的な要素 */}
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-blue-light)]/30 via-[var(--color-green-light)]/30 to-[var(--color-pink-light)]/30 px-4 py-2 rounded-[20px] border-2 border-[var(--color-blue-light)]/50 shadow-md">
+              <span className="responsive-text-sm font-bold text-gray-700">スワイプで簡単に答えられます</span>
+              <span className="text-xl">👆</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

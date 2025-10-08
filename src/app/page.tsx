@@ -57,30 +57,35 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--color-pink-light)] via-[var(--color-yellow-light)] to-[var(--color-blue-light)] py-8">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-white mb-2">Your Type</h1>
-        <p className="text-center text-white mb-8">{username} さん</p>
+    <div className="h-screen w-screen overflow-hidden flex flex-col py-4">
+      <div className="container mx-auto px-4 flex-1 flex flex-col justify-between">
+        <div className="text-center">
+          <h1 className="responsive-text-3xl font-bold text-white mb-1">Your Type</h1>
+          <p className="responsive-text-base text-white mb-2">{username} さん</p>
+          <ProgressBar current={currentQuestionIndex + 1} total={SAMPLE_QUESTIONS.length} />
+        </div>
 
-        <ProgressBar current={currentQuestionIndex + 1} total={SAMPLE_QUESTIONS.length} />
+        <div className="flex-1 flex items-center justify-center">
+          <CardStack
+            questions={SAMPLE_QUESTIONS.slice(currentQuestionIndex, currentQuestionIndex + 3)}
+            onComplete={(stackAnswers) => {
+              // CardStackから返された回答を処理
+              stackAnswers.forEach((answer) => handleAnswer(answer));
+            }}
+          />
+        </div>
 
-        <CardStack
-          questions={SAMPLE_QUESTIONS.slice(currentQuestionIndex, currentQuestionIndex + 3)}
-          onComplete={(stackAnswers) => {
-            // CardStackから返された回答を処理
-            stackAnswers.forEach((answer) => handleAnswer(answer));
-          }}
-        />
+        <div className="space-y-2">
+          <ActionButtons
+            onNo={() => handleAnswer(false)}
+            onYes={() => handleAnswer(true)}
+          />
 
-        <ActionButtons
-          onNo={() => handleAnswer(false)}
-          onYes={() => handleAnswer(true)}
-        />
-
-        <div className="text-center mt-8">
-          <p className="text-white text-sm">
-            左にスワイプ = No / 右にスワイプ = Yes
-          </p>
+          <div className="text-center">
+            <p className="text-white responsive-text-sm">
+              左にスワイプ = No / 右にスワイプ = Yes
+            </p>
+          </div>
         </div>
       </div>
     </div>

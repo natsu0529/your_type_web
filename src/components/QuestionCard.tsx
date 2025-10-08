@@ -77,8 +77,9 @@ export default function QuestionCard({
 
   return (
     <div
-      className="absolute w-full h-[600px] sm:h-[650px] max-w-sm mx-auto touch-none select-none cursor-grab active:cursor-grabbing"
+      className="absolute w-full max-w-lg mx-auto touch-none select-none cursor-grab active:cursor-grabbing"
       style={{
+        height: 'clamp(300px, 55vh, 500px)',
         transform: `translateX(${position.x}px) translateY(${position.y + offset * 10}px) rotate(${rotation}deg) scale(${1 - offset * 0.05})`,
         zIndex,
         transition: isDragging ? 'none' : 'transform 0.3s ease-out',
@@ -91,28 +92,28 @@ export default function QuestionCard({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="bg-white/100 rounded-[50px] shadow-2xl p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: '#ffffff' }}>
-        <div className="text-center mb-6">
-          <span className="text-sm font-medium text-gray-500">
+      <div className="bg-white/100 rounded-[50px] shadow-2xl p-6 sm:p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: '#ffffff' }}>
+        <div className="text-center mb-3">
+          <span className="responsive-text-sm font-medium text-gray-500">
             Question {questionNumber} / {totalQuestions}
           </span>
         </div>
 
-        <div className="text-center flex-1 flex items-center justify-center">
-          <p className="text-3xl sm:text-4xl font-bold text-gray-800">{question}</p>
+        <div className="text-center flex-1 flex items-center justify-center px-4">
+          <p className="responsive-text-3xl font-bold text-gray-800">{question}</p>
         </div>
       </div>
 
       {isDragging && (
         <>
           <div
-            className="absolute top-4 left-4 text-6xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] px-4 py-2 rotate-[-20deg]"
+            className="absolute top-4 left-4 responsive-text-4xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] px-3 py-1 rotate-[-20deg]"
             style={{ opacity: position.x < 0 ? Math.abs(position.x) / 100 : 0 }}
           >
             NO
           </div>
           <div
-            className="absolute top-4 right-4 text-6xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] px-4 py-2 rotate-[20deg]"
+            className="absolute top-4 right-4 responsive-text-4xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] px-3 py-1 rotate-[20deg]"
             style={{ opacity: position.x > 0 ? position.x / 100 : 0 }}
           >
             YES

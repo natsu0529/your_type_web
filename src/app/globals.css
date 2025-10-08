@@ -9,4 +9,39 @@
     --color-green-light: #BDE3C3;
     --color-blue-light: #A3CCDA;
   }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(to bottom right, var(--color-pink-light), var(--color-yellow-light), var(--color-blue-light));
+  }
+}
+
+@layer utilities {
+  /* レスポンシブサイズ調整用ユーティリティ */
+  .responsive-text-xs { font-size: clamp(0.625rem, 2vw, 0.75rem); }
+  .responsive-text-sm { font-size: clamp(0.75rem, 2.5vw, 0.875rem); }
+  .responsive-text-base { font-size: clamp(0.875rem, 3vw, 1rem); }
+  .responsive-text-lg { font-size: clamp(1rem, 3.5vw, 1.125rem); }
+  .responsive-text-xl { font-size: clamp(1.125rem, 4vw, 1.25rem); }
+  .responsive-text-2xl { font-size: clamp(1.25rem, 4.5vw, 1.5rem); }
+  .responsive-text-3xl { font-size: clamp(1.5rem, 5vw, 1.875rem); }
+  .responsive-text-4xl { font-size: clamp(1.875rem, 6vw, 2.25rem); }
+  .responsive-text-5xl { font-size: clamp(2.25rem, 7vw, 3rem); }
+  .responsive-text-6xl { font-size: clamp(3rem, 8vw, 3.75rem); }
+
+  /* レスポンシブサイズ（幅・高さ） */
+  .responsive-size-12 { width: clamp(2rem, 10vw, 3rem); height: clamp(2rem, 10vw, 3rem); }
+  .responsive-size-16 { width: clamp(2.5rem, 12vw, 4rem); height: clamp(2.5rem, 12vw, 4rem); }
+  .responsive-size-20 { width: clamp(3rem, 15vw, 5rem); height: clamp(3rem, 15vw, 5rem); }
+  .responsive-size-32 { width: clamp(6rem, 25vw, 8rem); height: clamp(6rem, 25vw, 8rem); }
+  .responsive-size-48 { width: clamp(10rem, 35vw, 12rem); height: clamp(10rem, 35vw, 12rem); }
+  .responsive-size-logo { width: clamp(12rem, 30vw, 18rem); height: clamp(12rem, 30vw, 18rem); }
+
+  /* レスポンシブpadding */
+  .responsive-p-4 { padding: clamp(0.5rem, 2vw, 1rem); }
+  .responsive-p-8 { padding: clamp(1rem, 3vw, 2rem); }
+  .responsive-p-12 { padding: clamp(1.5rem, 4vw, 3rem); }
 }
