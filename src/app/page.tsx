@@ -5,6 +5,7 @@ import UsernameInput from '@/components/UsernameInput';
 import CardStack from '@/components/CardStack';
 import ActionButtons from '@/components/ActionButtons';
 import ResultPage from '@/components/ResultPage';
+import { useLocale } from '@/contexts/LocaleContext';
 
 // 仮の質問データ（5問でテスト）
 const SAMPLE_QUESTIONS = Array.from({ length: 5 }, (_, i) => ({
@@ -15,6 +16,7 @@ const SAMPLE_QUESTIONS = Array.from({ length: 5 }, (_, i) => ({
 type AppState = 'username' | 'questions' | 'result';
 
 export default function Home() {
+  const { t, locale } = useLocale();
   const [state, setState] = useState<AppState>('username');
   const [username, setUsername] = useState('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -57,11 +59,11 @@ export default function Home() {
 
   return (
     <div className="h-screen w-screen overflow-hidden flex flex-col py-4">
-      <div className="container mx-auto px-4 flex-1 flex flex-col justify-between">
+      <div className="container mx-auto px-8 sm:px-16 flex-1 flex flex-col justify-between">
         <div className="text-center">
-          <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-1">Your Type</h1>
+          <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-1">{t.app.title}</h1>
           <p className="responsive-text-4xl font-black text-[var(--color-black)] drop-shadow-lg">
-            {username} さん
+            {username} {locale === 'ja' ? 'さん' : ''}
           </p>
         </div>
 
@@ -85,7 +87,7 @@ export default function Home() {
 
           <div className="text-center">
             <p className="text-[var(--color-white)] responsive-text-sm">
-              左にスワイプ = No / 右にスワイプ = Yes
+              {t.app.swipeInstruction}
             </p>
           </div>
         </div>

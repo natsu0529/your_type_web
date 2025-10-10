@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface QuestionCardProps {
   question: string;
@@ -19,6 +20,7 @@ export default function QuestionCard({
   zIndex = 0,
   offset = 0,
 }: QuestionCardProps) {
+  const { t } = useLocale();
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
@@ -91,7 +93,7 @@ export default function QuestionCard({
 
   return (
     <div
-      className="absolute w-full max-w-lg mx-auto touch-none select-none cursor-grab active:cursor-grabbing"
+      className="absolute w-full max-w-2xl mx-auto touch-none select-none cursor-grab active:cursor-grabbing"
       style={{
         height: 'clamp(300px, 55vh, 500px)',
         transform: `translateX(${position.x}px) translateY(${position.y + offset * 10}px) rotate(${rotation}deg) scale(${1 - offset * 0.05})`,
@@ -111,7 +113,7 @@ export default function QuestionCard({
           <div className="flex justify-center items-center mb-3" style={{ gap: '128px' }}>
             <div className="bg-gradient-to-r from-[var(--color-blue-light)] to-[var(--color-green-light)] rounded-full px-6 py-2 shadow-lg">
               <span className="responsive-text-lg font-bold text-[var(--color-white)]">
-                Question {questionNumber} / {totalQuestions}
+                {t.questionCard.question} {questionNumber} / {totalQuestions}
               </span>
             </div>
             <div className="bg-gradient-to-r from-[var(--color-pink-light)] to-[var(--color-yellow-light)] rounded-full px-5 py-2 shadow-lg">
@@ -141,7 +143,7 @@ export default function QuestionCard({
             }}
             className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-[var(--color-white)] hover:bg-[var(--color-pink-light)] hover:text-[var(--color-white)] transition-colors duration-200"
           >
-            NO
+            {t.questionCard.no}
           </button>
           <button
             onClick={(e) => {
@@ -150,7 +152,7 @@ export default function QuestionCard({
             }}
             className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-[var(--color-white)] hover:bg-[var(--color-green-light)] hover:text-[var(--color-white)] transition-colors duration-200"
           >
-            YES
+            {t.questionCard.yes}
           </button>
         </div>
       </div>
@@ -165,7 +167,7 @@ export default function QuestionCard({
           opacity: (isDragging || isAnimating) && position.x < 0 ? Math.min(Math.abs(position.x) / 100, 1) : 0
         }}
       >
-        NO
+        {t.questionCard.no}
       </div>
       {/* YESラベル - 左下に配置 */}
       <div
@@ -177,7 +179,7 @@ export default function QuestionCard({
           opacity: (isDragging || isAnimating) && position.x > 0 ? Math.min(position.x / 100, 1) : 0
         }}
       >
-        YES
+        {t.questionCard.yes}
       </div>
     </div>
   );

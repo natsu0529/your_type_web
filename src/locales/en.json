@@ -1,0 +1,31 @@
+{
+  "app": {
+    "title": "Your Type",
+    "swipeInstruction": "Swipe left = No / Swipe right = Yes"
+  },
+  "usernameInput": {
+    "title": "Your Type",
+    "subtitle": "What's your type?",
+    "questionCount": "5 Questions",
+    "typeCount": "1 Type",
+    "inputLabel": "First, please tell us your name",
+    "inputPlaceholder": "John Doe",
+    "startButton": "Start Diagnosis ✨",
+    "swipeHint": "Easy to answer by swiping"
+  },
+  "questionCard": {
+    "question": "Question",
+    "yes": "YES",
+    "no": "NO"
+  },
+  "resultPage": {
+    "yourTypeIs": "'s type is",
+    "descriptionTitle": "Type Description",
+    "descriptionPlaceholder": "A detailed description of your type will be displayed here. This will be replaced with data from the backend API.",
+    "shareButton": "Share Result",
+    "restartButton": "Try Again",
+    "shareTitle": "Your Type Diagnosis Result",
+    "shareText": "{username}'s type is {type}!",
+    "shareNotSupported": "This browser does not support sharing"
+  }
+}

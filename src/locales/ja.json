@@ -1,0 +1,31 @@
+{
+  "app": {
+    "title": "Your Type",
+    "swipeInstruction": "左にスワイプ = No / 右にスワイプ = Yes"
+  },
+  "usernameInput": {
+    "title": "Your Type",
+    "subtitle": "あなたは、どのタイプ？",
+    "questionCount": "5つの質問",
+    "typeCount": "1つのタイプ",
+    "inputLabel": "まずは、あなたの名前を教えてください",
+    "inputPlaceholder": "山田 太郎",
+    "startButton": "診断をスタート ✨",
+    "swipeHint": "スワイプで簡単に答えられます"
+  },
+  "questionCard": {
+    "question": "質問",
+    "yes": "YES",
+    "no": "NO"
+  },
+  "resultPage": {
+    "yourTypeIs": "さんのタイプは",
+    "descriptionTitle": "タイプの説明",
+    "descriptionPlaceholder": "ここにタイプの詳細な説明が表示されます。バックエンドAPIから取得したデータに置き換える予定です。",
+    "shareButton": "結果をシェア",
+    "restartButton": "もう一度診断",
+    "shareTitle": "Your Type 診断結果",
+    "shareText": "{username}さんのタイプは {type} です！",
+    "shareNotSupported": "このブラウザは共有機能に対応していません"
+  }
+}
