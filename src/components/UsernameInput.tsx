@@ -20,7 +20,7 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
     <div className="flex items-center justify-center h-screen w-screen overflow-hidden p-2 sm:p-4">
       <div className="w-full h-full flex items-center justify-center">
         {/* メインカード */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-[2.5rem] shadow-2xl responsive-p-8 border-4 border-white w-full max-h-full flex flex-col justify-between overflow-hidden">
+        <div className="backdrop-blur-sm rounded-[2.5rem] shadow-2xl responsive-p-8 border-4 border-[var(--color-white)] w-full max-h-full flex flex-col justify-between overflow-hidden" style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
           {/* ヘッダーセクション */}
           <div className="text-center mb-4">
             <h1 className="responsive-text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-pink-light)] mb-2 tracking-tight">
@@ -32,16 +32,16 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
             </p>
 
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-yellow-light)] to-[var(--color-pink-light)] px-4 py-1.5 rounded-full">
-              <span className="responsive-text-xs font-bold text-gray-800">5つの質問</span>
+              <span className="responsive-text-xs font-bold text-[var(--color-black)]">5つの質問</span>
               <span className="text-gray-600">•</span>
-              <span className="responsive-text-xs font-bold text-gray-800">1つのタイプ</span>
+              <span className="responsive-text-xs font-bold text-[var(--color-black)]">1つのタイプ</span>
             </div>
           </div>
 
           {/* フォームセクション */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col items-center">
-              <label htmlFor="username" className="block responsive-text-sm font-bold text-gray-800 mb-2 text-center">
+              <label htmlFor="username" className="block responsive-text-sm font-bold text-[var(--color-black)] mb-2 text-center">
                 まずは、あなたの名前を教えてください
               </label>
               <input
@@ -58,7 +58,7 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-2/3 md:w-80 bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-blue-light)] bg-[length:200%_100%] text-white font-black responsive-text-base py-2.5 rounded-[20px] shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:bg-right"
+                className="w-2/3 md:w-80 bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-blue-light)] bg-[length:200%_100%] text-[var(--color-white)] font-black responsive-text-base py-2.5 rounded-[20px] shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:bg-right"
               >
                 診断をスタート ✨
               </button>

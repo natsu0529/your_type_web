@@ -106,16 +106,16 @@ export default function QuestionCard({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="bg-white/100 rounded-[50px] shadow-2xl p-6 sm:p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: '#ffffff' }}>
+      <div className="rounded-[50px] shadow-2xl p-6 sm:p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: 'var(--color-white)' }}>
         <div className="mb-6">
           <div className="flex justify-center items-center mb-3" style={{ gap: '128px' }}>
             <div className="bg-gradient-to-r from-[var(--color-blue-light)] to-[var(--color-green-light)] rounded-full px-6 py-2 shadow-lg">
-              <span className="responsive-text-lg font-bold text-white">
+              <span className="responsive-text-lg font-bold text-[var(--color-white)]">
                 Question {questionNumber} / {totalQuestions}
               </span>
             </div>
             <div className="bg-gradient-to-r from-[var(--color-pink-light)] to-[var(--color-yellow-light)] rounded-full px-5 py-2 shadow-lg">
-              <span className="responsive-text-lg font-bold text-gray-800">
+              <span className="responsive-text-lg font-bold text-[var(--color-black)]">
                 {Math.round((questionNumber / totalQuestions) * 100)}%
               </span>
             </div>
@@ -129,7 +129,7 @@ export default function QuestionCard({
         </div>
 
         <div className="text-center flex-1 flex items-center justify-center px-4">
-          <p className="responsive-text-3xl font-bold text-gray-800">{question}</p>
+          <p className="responsive-text-3xl font-bold text-[var(--color-black)]">{question}</p>
         </div>
 
         {/* ボタン */}
@@ -139,7 +139,7 @@ export default function QuestionCard({
               e.stopPropagation();
               handleButtonClick(false);
             }}
-            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-white hover:bg-[var(--color-pink-light)] hover:text-white transition-colors duration-200"
+            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-[var(--color-white)] hover:bg-[var(--color-pink-light)] hover:text-[var(--color-white)] transition-colors duration-200"
           >
             NO
           </button>
@@ -148,7 +148,7 @@ export default function QuestionCard({
               e.stopPropagation();
               handleButtonClick(true);
             }}
-            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-white hover:bg-[var(--color-green-light)] hover:text-white transition-colors duration-200"
+            className="responsive-text-2xl font-bold px-8 py-3 rounded-full border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-[var(--color-white)] hover:bg-[var(--color-green-light)] hover:text-[var(--color-white)] transition-colors duration-200"
           >
             YES
           </button>
@@ -157,10 +157,11 @@ export default function QuestionCard({
 
       {/* NOラベル - 右下に配置 */}
       <div
-        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] bg-white/90 px-4 py-2 rotate-[-20deg] rounded-xl shadow-xl z-50"
+        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-pink-light)] text-[var(--color-pink-light)] px-4 py-2 rotate-[-20deg] rounded-xl shadow-xl z-50"
         style={{
           bottom: '1rem',
           right: '1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
           opacity: (isDragging || isAnimating) && position.x < 0 ? Math.min(Math.abs(position.x) / 100, 1) : 0
         }}
       >
@@ -168,10 +169,11 @@ export default function QuestionCard({
       </div>
       {/* YESラベル - 左下に配置 */}
       <div
-        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] bg-white/90 px-4 py-2 rotate-[20deg] rounded-xl shadow-xl z-50"
+        className="absolute responsive-text-4xl font-black border-4 border-[var(--color-green-light)] text-[var(--color-green-light)] px-4 py-2 rotate-[20deg] rounded-xl shadow-xl z-50"
         style={{
           bottom: '1rem',
           left: '1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
           opacity: (isDragging || isAnimating) && position.x > 0 ? Math.min(position.x / 100, 1) : 0
         }}
       >

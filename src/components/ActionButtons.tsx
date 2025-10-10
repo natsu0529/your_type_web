@@ -10,7 +10,7 @@ export default function ActionButtons({ onNo, onYes }: ActionButtonsProps) {
     <div className="flex justify-center gap-4 sm:gap-8">
       <button
         onClick={onNo}
-        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-[var(--color-pink-light)] shadow-lg hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--color-white)] border-4 border-[var(--color-pink-light)] shadow-lg hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
         aria-label="No"
       >
         <svg
@@ -27,7 +27,7 @@ export default function ActionButtons({ onNo, onYes }: ActionButtonsProps) {
 
       <button
         onClick={onYes}
-        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-4 border-[var(--color-green-light)] shadow-lg hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--color-white)] border-4 border-[var(--color-green-light)] shadow-lg hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
         aria-label="Yes"
       >
         <svg

@@ -8,6 +8,8 @@
     --color-yellow-light: #F8F7BA;
     --color-green-light: #BDE3C3;
     --color-blue-light: #A3CCDA;
+    --color-white: #ffffff;
+    --color-black: #000000;
   }
 
   body, html {

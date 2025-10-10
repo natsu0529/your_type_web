@@ -59,8 +59,10 @@ export default function Home() {
     <div className="h-screen w-screen overflow-hidden flex flex-col py-4">
       <div className="container mx-auto px-4 flex-1 flex flex-col justify-between">
         <div className="text-center">
-          <h1 className="responsive-text-3xl font-bold text-white mb-1">Your Type</h1>
-          <p className="responsive-text-base text-white mb-2">{username} さん</p>
+          <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-1">Your Type</h1>
+          <p className="responsive-text-4xl font-black text-[var(--color-black)] drop-shadow-lg">
+            {username} さん
+          </p>
         </div>
 
         <div className="flex-1 flex items-center justify-center">
@@ -82,7 +84,7 @@ export default function Home() {
           />
 
           <div className="text-center">
-            <p className="text-white responsive-text-sm">
+            <p className="text-[var(--color-white)] responsive-text-sm">
               左にスワイプ = No / 右にスワイプ = Yes
             </p>
           </div>
