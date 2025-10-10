@@ -118,7 +118,7 @@ export default function QuestionCard({
         </div>
 
         {/* ボタン */}
-        <div className="flex gap-12 justify-center mt-4">
+        <div className="flex justify-center mt-4" style={{ gap: '128px' }}>
           <button
             onClick={(e) => {
               e.stopPropagation();
