@@ -33,7 +33,7 @@ export default function CardStack({ questions, onComplete, startQuestionNumber =
   const visibleCards = questions.slice(currentIndex, currentIndex + 3);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto" style={{ height: 'clamp(300px, 55vh, 500px)' }}>
+    <div className="relative w-full max-w-2xl mx-auto px-8 sm:px-16" style={{ height: 'clamp(300px, 55vh, 500px)' }}>
       {visibleCards.map((question, index) => (
         <QuestionCard
           key={question.id}

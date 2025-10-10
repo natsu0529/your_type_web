@@ -19,8 +19,8 @@ export default function UsernameInput({ onStart }: UsernameInputProps) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen overflow-hidden px-8 py-4 sm:px-16 sm:py-8">
-      <div className="w-full max-w-2xl flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen w-screen overflow-hidden">
+      <div className="w-full max-w-2xl flex items-center justify-center px-8 sm:px-16">
         {/* メインカード */}
         <div className="rounded-[2.5rem] shadow-2xl responsive-p-8 border-4 border-[var(--color-black)] w-full flex flex-col gap-4 overflow-hidden">
           {/* ヘッダーセクション */}

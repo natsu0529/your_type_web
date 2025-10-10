@@ -59,7 +59,7 @@ export default function Home() {
 
   return (
     <div className="h-screen w-screen overflow-hidden flex flex-col py-4">
-      <div className="container mx-auto px-8 sm:px-16 flex-1 flex flex-col justify-between">
+      <div className="container mx-auto flex-1 flex flex-col justify-between">
         <div className="text-center">
           <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-1">{t.app.title}</h1>
           <p className="responsive-text-4xl font-black text-[var(--color-black)] drop-shadow-lg">
