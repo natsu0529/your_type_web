@@ -4,7 +4,6 @@ import { useState } from 'react';
 import UsernameInput from '@/components/UsernameInput';
 import CardStack from '@/components/CardStack';
 import ActionButtons from '@/components/ActionButtons';
-import ProgressBar from '@/components/ProgressBar';
 import ResultPage from '@/components/ResultPage';
 
 // 仮の質問データ（5問でテスト）
@@ -62,7 +61,6 @@ export default function Home() {
         <div className="text-center">
           <h1 className="responsive-text-3xl font-bold text-white mb-1">Your Type</h1>
           <p className="responsive-text-base text-white mb-2">{username} さん</p>
-          <ProgressBar current={currentQuestionIndex + 1} total={SAMPLE_QUESTIONS.length} />
         </div>
 
         <div className="flex-1 flex items-center justify-center">

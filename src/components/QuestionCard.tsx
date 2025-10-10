@@ -107,10 +107,25 @@ export default function QuestionCard({
       onTouchEnd={handleTouchEnd}
     >
       <div className="bg-white/100 rounded-[50px] shadow-2xl p-6 sm:p-8 border-4 border-[var(--color-pink-light)] h-full flex flex-col justify-center" style={{ backgroundColor: '#ffffff' }}>
-        <div className="text-center mb-3">
-          <span className="responsive-text-sm font-medium text-gray-500">
-            Question {questionNumber} / {totalQuestions}
-          </span>
+        <div className="mb-6">
+          <div className="flex justify-center items-center mb-3" style={{ gap: '128px' }}>
+            <div className="bg-gradient-to-r from-[var(--color-blue-light)] to-[var(--color-green-light)] rounded-full px-6 py-2 shadow-lg">
+              <span className="responsive-text-lg font-bold text-white">
+                Question {questionNumber} / {totalQuestions}
+              </span>
+            </div>
+            <div className="bg-gradient-to-r from-[var(--color-pink-light)] to-[var(--color-yellow-light)] rounded-full px-5 py-2 shadow-lg">
+              <span className="responsive-text-lg font-bold text-gray-800">
+                {Math.round((questionNumber / totalQuestions) * 100)}%
+              </span>
+            </div>
+          </div>
+          <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+            <div
+              className="h-full bg-gradient-to-r from-[var(--color-blue-light)] to-[var(--color-green-light)] transition-all duration-300 ease-out shadow-sm"
+              style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
+            />
+          </div>
         </div>
 
         <div className="text-center flex-1 flex items-center justify-center px-4">
