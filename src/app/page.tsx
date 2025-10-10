@@ -66,6 +66,8 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center">
           <CardStack
             questions={SAMPLE_QUESTIONS.slice(currentQuestionIndex, currentQuestionIndex + 3)}
+            startQuestionNumber={currentQuestionIndex + 1}
+            totalQuestions={SAMPLE_QUESTIONS.length}
             onComplete={(stackAnswers) => {
               // CardStackから返された回答を処理
               stackAnswers.forEach((answer) => handleAnswer(answer));

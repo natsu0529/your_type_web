@@ -11,9 +11,11 @@ interface Question {
 interface CardStackProps {
   questions: Question[];
   onComplete: (answers: boolean[]) => void;
+  startQuestionNumber?: number;
+  totalQuestions?: number;
 }
 
-export default function CardStack({ questions, onComplete }: CardStackProps) {
+export default function CardStack({ questions, onComplete, startQuestionNumber = 1, totalQuestions }: CardStackProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
 
@@ -36,8 +38,8 @@ export default function CardStack({ questions, onComplete }: CardStackProps) {
         <QuestionCard
           key={question.id}
           question={question.text}
-          questionNumber={currentIndex + index + 1}
-          totalQuestions={questions.length}
+          questionNumber={startQuestionNumber + currentIndex + index}
+          totalQuestions={totalQuestions || questions.length}
           onSwipe={index === 0 ? handleSwipe : () => {}}
           zIndex={visibleCards.length - index}
           offset={index}
