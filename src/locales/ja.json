@@ -1,12 +1,13 @@
 {
   "app": {
     "title": "Your Type",
-    "swipeInstruction": "左にスワイプ = No / 右にスワイプ = Yes"
+    "swipeInstruction": "左にスワイプ = No / 右にスワイプ = Yes",
+    "saving": "保存中..."
   },
   "usernameInput": {
     "title": "Your Type",
     "subtitle": "あなたは、どのタイプ？",
-    "questionCount": "5つの質問",
+    "questionCount": "50の質問",
     "typeCount": "1つのタイプ",
     "inputLabel": "まずは、あなたの名前を教えてください",
     "inputPlaceholder": "山田 太郎",
@@ -17,6 +18,16 @@
     "question": "質問",
     "yes": "YES",
     "no": "NO"
+  },
+  "exit": {
+    "button": "終了する",
+    "confirmTitle": "本当に終了しますか？",
+    "confirmMessage": "ここまでの回答は保存されます。診断を中断してよろしいですか？",
+    "confirmButton": "終了する",
+    "cancelButton": "続ける",
+    "thankYou": "ご協力ありがとうございました",
+    "thankYouMessage": "あなたの回答は正常に保存されました。",
+    "restartButton": "もう一度始める"
   },
   "resultPage": {
     "yourTypeIs": "さんのタイプは",

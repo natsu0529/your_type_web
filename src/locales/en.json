@@ -1,12 +1,13 @@
 {
   "app": {
     "title": "Your Type",
-    "swipeInstruction": "Swipe left = No / Swipe right = Yes"
+    "swipeInstruction": "Swipe left = No / Swipe right = Yes",
+    "saving": "Saving..."
   },
   "usernameInput": {
     "title": "Your Type",
     "subtitle": "What's your type?",
-    "questionCount": "5 Questions",
+    "questionCount": "50 Questions",
     "typeCount": "1 Type",
     "inputLabel": "First, please tell us your name",
     "inputPlaceholder": "John Doe",
@@ -17,6 +18,16 @@
     "question": "Question",
     "yes": "YES",
     "no": "NO"
+  },
+  "exit": {
+    "button": "Exit",
+    "confirmTitle": "Are you sure you want to exit?",
+    "confirmMessage": "Your answers so far will be saved. Are you sure you want to stop the diagnosis?",
+    "confirmButton": "Exit",
+    "cancelButton": "Continue",
+    "thankYou": "Thank you for your participation",
+    "thankYouMessage": "Your responses have been saved successfully.",
+    "restartButton": "Start Over"
   },
   "resultPage": {
     "yourTypeIs": "'s type is",
