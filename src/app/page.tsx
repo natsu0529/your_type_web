@@ -164,6 +164,16 @@ export default function Home() {
             <p className="responsive-text-4xl font-black text-[var(--color-black)] drop-shadow-lg">
               {username} {locale === 'ja' ? 'さん' : ''}
             </p>
+
+            {/* 途中退室案内 */}
+            <div className="flex justify-center mt-3">
+              <div className="flex items-center gap-2">
+                <span className="responsive-text-lg">⚠️</span>
+                <p className="responsive-text-base font-black text-red-600">
+                  {t.usernameInput.exitNotice}
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="flex-1 flex items-center justify-center">

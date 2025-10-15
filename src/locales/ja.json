@@ -6,13 +6,13 @@
   },
   "usernameInput": {
     "title": "Your Type",
-    "subtitle": "あなたは、どのタイプ？",
     "questionCount": "50の質問",
     "typeCount": "1つのタイプ",
     "inputLabel": "まずは、あなたの名前を教えてください",
     "inputPlaceholder": "山田 太郎",
     "startButton": "診断をスタート ✨",
-    "swipeHint": "スワイプで簡単に答えられます"
+    "swipeHint": "スワイプで簡単に答えられます",
+    "exitNotice": "やめたいときはいつでも右上の終了するボタンで途中退室してください"
   },
   "questionCard": {
     "question": "質問",

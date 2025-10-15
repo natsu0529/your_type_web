@@ -6,13 +6,13 @@
   },
   "usernameInput": {
     "title": "Your Type",
-    "subtitle": "What's your type?",
     "questionCount": "50 Questions",
     "typeCount": "1 Type",
     "inputLabel": "First, please tell us your name",
     "inputPlaceholder": "John Doe",
     "startButton": "Start Diagnosis ✨",
-    "swipeHint": "Easy to answer by swiping"
+    "swipeHint": "Easy to answer by swiping",
+    "exitNotice": "You can exit at any time using the exit button in the top right corner"
   },
   "questionCard": {
     "question": "Question",
