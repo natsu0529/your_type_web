@@ -168,22 +168,22 @@ export default function Home() {
 
           <div className="flex-1 flex items-center justify-center">
             <CardStack
+              key={currentQuestionIndex}
               questions={questions.slice(currentQuestionIndex, currentQuestionIndex + 3).map(q => ({
                 id: q.id,
                 text: locale === 'ja' ? q.ja : q.en,
               }))}
               startQuestionNumber={currentQuestionIndex + 1}
               totalQuestions={TOTAL_QUESTIONS}
-              onComplete={() => {
-                // CardStackからの回答は使わず、ActionButtonsで処理
-              }}
+              onSwipe={handleAnswer}
+              onComplete={() => {}}
             />
           </div>
 
           <div className="space-y-2">
             <ActionButtons
-              onNo={async () => await handleAnswer(false)}
-              onYes={async () => await handleAnswer(true)}
+              onNo={() => handleAnswer(false)}
+              onYes={() => handleAnswer(true)}
             />
 
             <div className="text-center">

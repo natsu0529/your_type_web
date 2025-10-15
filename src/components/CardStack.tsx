@@ -11,15 +11,26 @@ interface Question {
 interface CardStackProps {
   questions: Question[];
   onComplete: (answers: boolean[]) => void;
+  onSwipe?: (answer: boolean) => void;
   startQuestionNumber?: number;
   totalQuestions?: number;
 }
 
-export default function CardStack({ questions, onComplete, startQuestionNumber = 1, totalQuestions }: CardStackProps) {
+export default function CardStack({ questions, onComplete, onSwipe, startQuestionNumber = 1, totalQuestions }: CardStackProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
 
   const handleSwipe = (answer: boolean) => {
+    // 外部のonSwipeハンドラーがある場合はそれを優先
+    if (onSwipe) {
+      onSwipe(answer);
+      if (currentIndex + 1 < questions.length) {
+        setCurrentIndex(currentIndex + 1);
+      }
+      return;
+    }
+
+    // 従来の動作（互換性のため）
     const newAnswers = [...answers, answer];
     setAnswers(newAnswers);
 

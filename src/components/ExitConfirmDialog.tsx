@@ -19,10 +19,17 @@ export default function ExitConfirmDialog({ isOpen, onConfirm, onCancel }: ExitC
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center bg-black bg-opacity-60 p-4"
-      style={{ position: 'fixed' }}
+      className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center p-4"
+      style={{
+        position: 'fixed',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(4px)'
+      }}
     >
-      <div className="bg-white rounded-2xl shadow-2xl p-8 mx-4 max-w-md w-full">
+      <div
+        className="bg-white rounded-2xl shadow-2xl p-8 mx-4 max-w-md w-full border-2 border-gray-300"
+        style={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)' }}
+      >
         <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
           {t.exit.confirmTitle}
         </h2>
