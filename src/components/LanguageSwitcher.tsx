@@ -6,13 +6,29 @@ export default function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="fixed top-4 right-4 z-50">
-      <button
-        onClick={() => setLocale(locale === 'ja' ? 'en' : 'ja')}
-        className="bg-[var(--color-white)] border-2 border-[var(--color-blue-light)] rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 font-bold text-[var(--color-black)] responsive-text-sm"
-      >
-        {locale === 'ja' ? 'EN' : 'JP'}
-      </button>
+    <div className="fixed top-20 right-4 z-50">
+      <div className="flex gap-2">
+        <button
+          onClick={() => setLocale('ja')}
+          className={`px-6 py-3 rounded-xl font-bold text-base transition-all shadow-lg ${
+            locale === 'ja'
+              ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+              : 'bg-white text-gray-600 hover:bg-gray-100'
+          }`}
+        >
+          🇯🇵 日本語
+        </button>
+        <button
+          onClick={() => setLocale('en')}
+          className={`px-6 py-3 rounded-xl font-bold text-base transition-all shadow-lg ${
+            locale === 'en'
+              ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+              : 'bg-white text-gray-600 hover:bg-gray-100'
+          }`}
+        >
+          🇬🇧 English
+        </button>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function ExitButton({ onClick }: ExitButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="fixed top-4 right-4 z-50 px-4 py-2 bg-white text-gray-800 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-200 responsive-text-sm font-medium border border-gray-200"
+      className="fixed top-4 right-4 z-50 px-6 py-3 bg-white text-gray-800 rounded-xl shadow-lg hover:bg-gray-100 transition-colors duration-200 text-base font-bold border-2 border-gray-300"
       aria-label={t.exit.button}
     >
       {t.exit.button}
