@@ -125,10 +125,10 @@ export default function Home() {
     return (
       <div className="h-screen w-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-4">
+          <h1 className="responsive-text-3xl font-bold text-[var(--color-black)] mb-4">
             {t.exit.thankYou || 'ご協力ありがとうございました'}
           </h1>
-          <p className="responsive-text-base text-[var(--color-white)] mb-6">
+          <p className="responsive-text-base text-[var(--color-black)] mb-6">
             {t.exit.thankYouMessage || 'あなたの回答は正常に保存されました。'}
           </p>
           {saveError && (
@@ -138,7 +138,7 @@ export default function Home() {
           )}
           <button
             onClick={handleRestart}
-            className="px-6 py-3 bg-[var(--color-primary)] text-[var(--color-white)] rounded-lg hover:opacity-90 transition-opacity duration-200 responsive-text-base font-medium"
+            className="px-6 py-3 text-[var(--color-black)] rounded-lg hover:opacity-70 transition-opacity duration-200 responsive-text-base font-bold"
           >
             {t.exit.restartButton || 'もう一度始める'}
           </button>
@@ -159,8 +159,8 @@ export default function Home() {
 
       <div className="h-screen w-screen overflow-hidden flex flex-col py-4">
         <div className="container mx-auto flex-1 flex flex-col justify-between">
-          <div className="text-center">
-            <h1 className="responsive-text-3xl font-bold text-[var(--color-white)] mb-1">{t.app.title}</h1>
+          <div className="text-center mt-8 sm:mt-0">
+            <h1 className="responsive-text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-blue-light)] via-[var(--color-green-light)] to-[var(--color-pink-light)] mb-1">{t.app.title}</h1>
             <p className="responsive-text-4xl font-black text-[var(--color-black)] drop-shadow-lg">
               {username} {locale === 'ja' ? 'さん' : ''}
             </p>
