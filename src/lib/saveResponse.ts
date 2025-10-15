@@ -1,12 +1,13 @@
 /**
- * 回答データをSupabaseに保存する関数
+ * 回答データをFirebaseに保存する関数
  */
 
-import { supabase, isSupabaseReady, getSupabaseSetupMessage } from './supabase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getFirestoreDB, isFirebaseReady, getFirebaseSetupMessage } from './firebase';
 import type { SaveResponseParams, SaveResponseResult, ResponseData } from '@/types/response';
 
 /**
- * 回答データをSupabaseのresponsesテーブルに保存
+ * 回答データをFirestoreのresponsesコレクションに保存
  *
  * @param params - 保存パラメータ
  * @param params.username - ユーザー名
@@ -22,21 +23,23 @@ export async function saveResponse({
   exitAtQuestion,
 }: SaveResponseParams): Promise<SaveResponseResult> {
   try {
-    // Supabaseの設定チェック
-    if (!isSupabaseReady() || !supabase) {
-      console.warn('Supabaseが設定されていません');
-      console.log(getSupabaseSetupMessage());
+    // Firebaseの設定チェック
+    const db = getFirestoreDB();
+    if (!isFirebaseReady() || !db) {
+      console.warn('Firebaseが設定されていません');
+      console.log(getFirebaseSetupMessage());
       return {
         success: false,
-        error: 'Supabaseが設定されていません。SETUP_GUIDE.mdを参照してください。',
+        error: 'Firebaseが設定されていません。SETUP_GUIDE.mdを参照してください。',
       };
     }
 
     // 回答配列をq1-q50のオブジェクトに変換
-    const responseData: Partial<ResponseData> = {
+    const responseData: Partial<ResponseData> & { created_at?: unknown } = {
       username,
       locale,
       exit_at_question: exitAtQuestion,
+      created_at: serverTimestamp(),
     };
 
     // 50問分のデータを動的に設定
@@ -47,29 +50,17 @@ export async function saveResponse({
       responseData[questionKey] = answer !== undefined ? answer : null;
     }
 
-    // Supabaseにデータを挿入
-    const { data, error } = await supabase
-      .from('responses')
-      .insert([responseData])
-      .select('id')
-      .single();
-
-    if (error) {
-      console.error('Supabase保存エラー:', error);
-      return {
-        success: false,
-        error: `データの保存に失敗しました: ${error.message}`,
-      };
-    }
+    // Firestoreにデータを追加
+    const docRef = await addDoc(collection(db, 'responses'), responseData);
 
     return {
       success: true,
       data: {
-        id: data.id,
+        id: docRef.id,
       },
     };
   } catch (error) {
-    console.error('予期しないエラー:', error);
+    console.error('Firebase保存エラー:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : '不明なエラーが発生しました',

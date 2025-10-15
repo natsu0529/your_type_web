@@ -19,27 +19,53 @@
 
 ## 🚀 セットアップ手順
 
-### 1. Supabaseプロジェクトの作成
+### 1. Firebaseプロジェクトの作成
 
-1. [Supabase](https://supabase.com) にアクセスしてアカウントを作成
+1. [Firebase Console](https://console.firebase.google.com) にアクセスしてアカウントを作成
 2. 新しいプロジェクトを作成
-3. Project Settings > API から以下の情報を取得：
-   - `Project URL`
-   - `anon/public key`
+3. プロジェクト設定から以下の情報を取得：
+   - `API Key`
+   - `Auth Domain`
+   - `Project ID`
+   - `Storage Bucket`
+   - `Messaging Sender ID`
+   - `App ID`
 
-### 2. Supabaseデータベースの設定
+### 2. Firestore Databaseの設定
 
-1. Supabase ダッシュボードの **SQL Editor** を開く
-2. `supabase/create_responses_table.sql` の内容をコピー＆ペースト
-3. **RUN** を押してテーブルを作成
+1. Firebase コンソールで **Firestore Database** を選択
+2. **データベースの作成** をクリック
+3. **テストモードで開始** を選択（開発中のみ）
+4. ロケーションを選択（asia-northeast1を推奨）
+5. **有効にする** をクリック
+
+**セキュリティルールの設定:**
+
+Firestore のルールを以下のように設定してください（開発後は適切に調整）：
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /responses/{document=**} {
+      allow create: if true;  // 誰でも書き込み可能（データ収集用）
+      allow read: if false;   // 読み取りは禁止
+    }
+  }
+}
+```
 
 ### 3. 環境変数の設定
 
-`.env.local` ファイルを編集して、Supabaseの情報を設定：
+`.env.local` ファイルを編集して、Firebaseの情報を設定：
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
 ```
 
 ### 4. 開発サーバーの起動
@@ -57,7 +83,7 @@ npm run dev
 ### データ収集機能
 - ✅ 50問の質問（日本語・英語）
 - ✅ Yes/No回答（0=Yes, 1=No）
-- ✅ 回答データのSupabase保存
+- ✅ 回答データのFirestore保存
 - ✅ ユーザー名の記録
 - ✅ 言語設定の記録
 
@@ -98,15 +124,13 @@ your_type_web/
 │   ├── data/
 │   │   └── questions.ts                # 50問の質問データ
 │   ├── lib/
-│   │   ├── supabase.ts                 # Supabaseクライアント
+│   │   ├── firebase.ts                 # Firebaseクライアント
 │   │   └── saveResponse.ts             # データ保存関数
 │   ├── types/
 │   │   └── response.ts                 # 型定義
 │   └── locales/
 │       ├── ja.json                     # 日本語翻訳
 │       └── en.json                     # 英語翻訳
-├── supabase/
-│   └── create_responses_table.sql      # テーブル作成SQL
 ├── .env.local                          # 環境変数
 ├── IMPLEMENTATION_PLAN.md              # 実装計画書
 └── SETUP_GUIDE.md                      # このファイル
@@ -116,58 +140,42 @@ your_type_web/
 
 ## 🗄️ データベーススキーマ
 
-### `responses` テーブル
+### `responses` コレクション (Firestore)
 
-| カラム | 型 | 説明 |
+| フィールド | 型 | 説明 |
 |--------|-----|------|
-| `id` | UUID | 主キー |
-| `username` | TEXT | ユーザー名 |
-| `locale` | TEXT | 言語（ja/en） |
-| `q1` ~ `q50` | INTEGER | 質問1-50の回答（0=Yes, 1=No, null=未回答） |
-| `exit_at_question` | INTEGER | 離脱した質問番号（完了時は51） |
-| `created_at` | TIMESTAMP | 回答日時 |
+| `username` | string | ユーザー名 |
+| `locale` | string | 言語（ja/en） |
+| `q1` ~ `q50` | number \| null | 質問1-50の回答（0=Yes, 1=No, null=未回答） |
+| `exit_at_question` | number | 離脱した質問番号（完了時は51） |
+| `created_at` | timestamp | 回答日時 |
+
+**注意:** FirestoreではドキュメントIDが自動生成されます。
 
 ---
 
-## 📈 データ分析クエリ例
+## 📈 データ分析
 
-### 離脱率の計算
-```sql
-SELECT
-  ROUND(COUNT(CASE WHEN exit_at_question < 51 THEN 1 END) * 100.0 / COUNT(*), 2) as exit_rate_percent
-FROM responses;
-```
+Firestoreのデータは、Firebase Consoleから確認できます。また、以下の方法でデータを分析できます：
 
-### 質問ごとの離脱数
-```sql
-SELECT
-  exit_at_question,
-  COUNT(*) as exit_count
-FROM responses
-WHERE exit_at_question < 51
-GROUP BY exit_at_question
-ORDER BY exit_at_question;
-```
+### 方法1: Firebase Consoleで直接確認
+1. Firebase Console > Firestore Database
+2. `responses` コレクションを開く
+3. ドキュメントを1つずつ確認
 
-### 完了率
-```sql
-SELECT
-  ROUND(COUNT(CASE WHEN exit_at_question = 51 THEN 1 END) * 100.0 / COUNT(*), 2) as completion_rate
-FROM responses;
-```
+### 方法2: Firestore エクスポート機能
+1. Firebase Console > Firestore Database > データをエクスポート
+2. Cloud Storage にエクスポート
+3. BigQuery にインポートして SQL で分析
 
-### 質問別のYes/No分布
-```sql
-SELECT
-  CASE
-    WHEN q1 = 0 THEN 'Yes'
-    WHEN q1 = 1 THEN 'No'
-    ELSE 'No Answer'
-  END as answer,
-  COUNT(*) as count
-FROM responses
-GROUP BY q1;
-```
+### 方法3: Cloud Functions でデータ集計
+Node.js や Python を使って、Firestore のデータを集計する Cloud Functions を作成できます。
+
+**分析例:**
+- 離脱率の計算
+- 質問ごとの離脱数
+- 完了率
+- 質問別のYes/No分布
 
 ---
 
@@ -175,7 +183,7 @@ GROUP BY q1;
 
 ### セキュリティ
 - ✅ ユーザー認証は不要（匿名データ収集）
-- ✅ Supabase RLSでINSERTのみ許可
+- ✅ Firestore Security RulesでCREATEのみ許可
 - ✅ `.env.local`は`.gitignore`に含まれている
 
 ### データ形式
@@ -193,10 +201,11 @@ GROUP BY q1;
 
 ## 🐛 トラブルシューティング
 
-### Supabase接続エラー
+### Firebase接続エラー
 1. `.env.local`の設定を確認
-2. Supabase URLとAnon Keyが正しいか確認
-3. テーブルが作成されているか確認
+2. Firebase API KeyとProject IDが正しいか確認
+3. Firestore Databaseが有効化されているか確認
+4. Firebase Consoleでプロジェクトが選択されているか確認
 
 ### ビルドエラー
 1. `npm install`を再実行
@@ -205,8 +214,9 @@ GROUP BY q1;
 
 ### データが保存されない
 1. ブラウザのコンソールでエラーを確認
-2. Supabase RLSポリシーを確認
+2. Firestore Security Rulesを確認
 3. ネットワーク接続を確認
+4. Firebase Consoleでクォータ制限を確認
 
 ---
 
@@ -215,8 +225,8 @@ GROUP BY q1;
 質問や問題がある場合は、以下を確認してください：
 
 1. `IMPLEMENTATION_PLAN.md` - 詳細な実装計画
-2. `supabase/create_responses_table.sql` - データベース定義
-3. Supabaseダッシュボードのログ
+2. Firebase Console - Firestore Database
+3. Firebase Consoleのログ（Cloud Functions > ログ）
 
 ---
 

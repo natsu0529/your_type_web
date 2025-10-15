@@ -10,7 +10,7 @@ import { useLocale } from '@/contexts/LocaleContext';
 import { questions, TOTAL_QUESTIONS } from '@/data/questions';
 import { saveResponse, savePartialResponse } from '@/lib/saveResponse';
 import { AnswerValue } from '@/types/response';
-import { isSupabaseReady } from '@/lib/supabase';
+import { isFirebaseReady } from '@/lib/firebase';
 
 type AppState = 'username' | 'questions' | 'saving' | 'exited';
 
@@ -98,9 +98,9 @@ export default function Home() {
   if (state === 'username') {
     return (
       <>
-        {!isSupabaseReady() && (
+        {!isFirebaseReady() && (
           <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black px-6 py-3 rounded-lg shadow-lg z-50 max-w-md text-center">
-            ⚠️ Supabase未設定（SETUP_GUIDE.md参照）
+            ⚠️ Firebase未設定（SETUP_GUIDE.md参照）
           </div>
         )}
         <UsernameInput onStart={handleStart} />
