@@ -6,7 +6,7 @@ export default function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="fixed top-20 right-4 z-50">
+    <div style={{ position: 'fixed', top: '5rem', right: '1rem', left: 'auto' }} className="z-50">
       <div className="flex gap-2">
         <button
           onClick={() => setLocale('ja')}
